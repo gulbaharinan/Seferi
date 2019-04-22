@@ -19,9 +19,9 @@ namespace Seferi.UI
             InitializeComponent();
         }
 
-        public int SeferId { get; internal set; }
-        public int BinisDurakId { get; internal set; }
-        public int InisDurakId { get; internal set; }
+        public int SeferId;
+        public int BinisDurakId;
+        public int InisDurakId;
 
         private void btn_RezervasyonKaydet_Click(object sender, EventArgs e)
         {

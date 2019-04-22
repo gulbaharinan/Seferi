@@ -10,11 +10,9 @@ namespace Seferi.BLL
    public static class SeferBLL
     {
         static SeferiEntities datacontext = new SeferiEntities();
-        public static object GetSeferlers(int DurakID)
+        public static List<Seferler> GetSeferlers(int GuzergahId)
         {
-            var durak = datacontext.GuzergahDuraklaris.Where(x=>x.DurakID==DurakID);
-            var guzergah= datacontext.Seferlers.Where(x =>durak.Any(a=>x.GuzergahID==a.GuzergahID));
-            return guzergah.ToList();
+            return datacontext.Seferlers.Where(a => a.GuzergahID == GuzergahId).ToList();
         }
     }
 }

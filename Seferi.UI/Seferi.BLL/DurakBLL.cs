@@ -18,18 +18,16 @@ namespace Seferi.BLL
 
         public static object GetNereye(int DurakId)
         {
-            var guzergah = datacontext.GuzergahDuraklaris.Where(x => x.DurakID == DurakId && x.Sira!=6);
-            var durak = datacontext.GuzergahDuraklaris.Where(x => guzergah.Any(a => a.GuzergahID == x.GuzergahID)).Select(
-                c => new
-                {
-                    c.DurakID,
-                    c.Duraklar.DurakAdi,
-                    c.GuzergahID,
-                    c.Sira
+            List<int> guzergahIDs = datacontext.GuzergahDuraklaris.Where(x => x.DurakID == DurakId).Select(a=>a.GuzergahID).ToList();
+            List<int> durakIDs = datacontext.GuzergahDuraklaris.Where(x => guzergahIDs.Contains(x.GuzergahID)).Select(a => a.DurakID).ToList();
+            List<Duraklar> duraklar = datacontext.Duraklars.Where(a => durakIDs.Contains(a.DurakID)).ToList();
+            return duraklar;
+        }
 
-                }
-                );
-            return durak.ToList();
+        public static List<GuzergahDuraklari> GetGuzergahDuraklaris(int ıd)
+        {
+            return datacontext.GuzergahDuraklaris.Where(a => a.DurakID == ıd).ToList();
+
         }
 
        
